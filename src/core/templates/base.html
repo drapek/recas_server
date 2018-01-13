@@ -1,0 +1,110 @@
+<!--
+*
+*  INSPINIA - Responsive Admin Theme
+*  version 2.6.2
+*
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
+    <title>ReCas server</title>
+
+    {% block css %}
+        <link href="{% static 'inspinia/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'inspinia/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+        <!-- Toastr style -->
+        <link href="{% static 'inspinia/css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+        <!-- Gritter -->
+        <link href="{% static 'inspinia/js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+        <link href="{% static 'inspinia/css/animate.css' %}" rel="stylesheet">
+        <link href="{% static 'inspinia/css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                {% block navigation %}
+                    <li class="nav-header" style="text-align: center;">
+                        <div class="dropdown profile-element"> <span>
+                                 </span>
+                        <img src="{% static "img/logo/ReCaS_logo_white_small.png" %}" style="margin:auto;" alt="ReCaS"/>
+                            {% if request.user.first_name and request.user.last_name %}
+                                <span class="clear"> <span class="block m-t-xs"><strong class="font-bold" style="color: white">{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+                            {% endif %}
+                            </span> <span class="text-muted text-xs block">{% if request.user.is_superuser %}
+                                Superuser{% else %}Administrator{% endif %}</span> </span>
+                        </div>
+                        <div class="logo-element">
+                            ReCaS
+                        </div>
+                    </li>
+                    <li id="menu-homepage">
+                        <a href="{% url 'panel_index' %}"><i class="fa fa-home"></i> <span
+                                class="nav-label">Homepage</span> </a>
+                    </li>
+                    {#  list of avaible panels #}
+                    {% include 'html_blocks/menu_camera_block.html' %}
+
+                {% endblock navigation %}
+
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="{% url 'panel_logout' %}">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+
+</div>
+
+{% block javascript %}
+    <!-- Mainly scripts -->
+    <script src="{% static 'inspinia/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'inspinia/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'inspinia/js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'inspinia/js/inspinia.js' %}"></script>
+    <script src="{% static 'inspinia/js/plugins/pace/pace.min.js' %}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{% static 'inspinia/js/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        <h1>Welcome {{ request.user.username }}.</h1>
+
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            Welcome in ReCaS panel. Please choose one option from left panel to proceed further.
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#menu-homepage').addClass('active');
+        });
+
+    </script>
+{% endblock %}

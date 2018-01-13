@@ -1,0 +1,10 @@
+<li id="menu-admin">
+    <a href="{% url 'camera:online_video_preview' %}"><i class="fa fa-user"></i> <span
+            class="nav-label">Camera</span><span class="fa arrow"></span></a>
+    <ul id="menu-admin-ul" class="nav nav-second-level collapse">
+        <li id="menu-admins-list"><a href="{% url 'camera:online_video_preview' %}">Online preview</a>
+        </li>
+        <li id="menu-admin-add"><a href="{% url 'camera:saved_videos_list' %}">Saved videos</a>
+        </li>
+    </ul>
+</li>
