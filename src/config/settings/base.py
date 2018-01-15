@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'camera_panel.context_processors.videos_url'
             ],
         },
     },
@@ -109,8 +110,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-STATIC_ROOT = '/var/www/static'
+STATIC_ROOT = '/var/www/recas_server/static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.abspath(os.path.join(BASE_DIR, "../static")),
 ]
+
+SITE_URL = 'http://localhost:8000/'
+MEDIA_ROOT = '/var/www/recas_server/media'
+MEDIA_URL = 'media/'
+ABSOLUTE_VIDEOS_URL = SITE_URL + MEDIA_URL + 'videos'
+
+# Variables
+# Camera settings
+CAMERA_FETCH_FRAME_MAX_TIRES = 500
+CAMERA_FRAME_WIDTH = 640
+CAMERA_FRAME_HEIGHT = 480
+VIDEO_FOLDER = MEDIA_ROOT + '/videos'
+IMAGES_STREAM_FOLDER = MEDIA_ROOT + '/online-preview'

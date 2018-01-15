@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            <h2>List of saved videos.</h2>
+
+            {% if object_list %}
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Striped Table </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>camera</th>
+                                <th>name</th>
+                                <th>time of recording time</th>
+                                <th>preview</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                             {% for video in object_list %}
+                                 <tr>
+                                     <td>{{ forloop.counter }}</td>
+                                     <td>{{ video.camera.name }}</td>
+                                    <td>{{ video.name }}</td>
+                                    <td>{{ video.datetime_started|date:"G:i d-m-Y" }}</td>
+                                    <td><a class="btn btn-w-m btn-primary" href="{% url 'camera:saved_video_preview' pk=video.id %}">Preview video</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            {% else %}
+                 <h2>There is no saved videos!</h2>
+            {% endif %}
+        </div>
+
+            {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#menu-camera-saved-videos').addClass('active');
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            <h1>Online camera preview</h1>
+{#
+            <img src="/media/online-preview/camera1.jpg" id="camera_preview"/>
+
+            <select class="form-control m-b" name="camera">
+                <option>camera 1</option>
+            </select>
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    {# Update the image every 0.5 sec #}
+    <script>
+        function refresh_camera_image() {
+            setInterval(function () {
+                var myImageElement = document.getElementById('camera_preview');
+                myImageElement.src = '/media/online-preview/camera1.jpg?rand=' + Math.random();
+            }, 500);
+        }
+        window.onload = refresh_camera_image
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#menu-camera-online-preview').addClass('active');
+        });
+    </script>
+{% endblock %}

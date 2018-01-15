@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    {{ block.super }}
+    <link href="{% static "css/videojs.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            <h1>Saved video preview.</h1>
+            <p><b>Name</b>: {{ object.name }}</p>
+            <p><b>Date</b>: {{ object.datetime_started|date:"G:i d-m-Y"  }}</p>
+            <p><b>Camera</b>: {{ object.camera.name }}</p>
+
+            <video id="video_player" class="video-js vjs-default-skin"
+             controls autoplay preload="auto" width="600" height="480"
+             data-setup='{"techorder" : ["flash"] }'>
+                <source src="{{ VIDEOS_URL }}/{{ object.name }}" type='video/mp4' />
+            </video>
+
+        </div>
+    </div>
+    <a class='btn-w-m btn-primary' style="padding: 5px" href="{% url 'camera:saved_videos_list' %}">Back</a>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static "js/video.js" %}"></script>
+      <script>
+        videojs.options.flash.swf = "video-js.swf";
+      </script>
+    <script>
+        $(document).ready(function() {
+            $('#menu-camera-saved-videos').addClass('active');
+        });
+
+    </script>
+{% endblock %}

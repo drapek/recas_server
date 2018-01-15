@@ -113,10 +113,12 @@ venv.bak/
 [Ll]ib
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
+#[Ss]cripts
 pyvenv.cfg
 .venv
 pip-selfcheck.json
 
 .idea/*
 .idea/
+excluded/
+excluded/*
