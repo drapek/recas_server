@@ -135,5 +135,5 @@ SMSAPI_PSWD_MD5 = config('SMSAPI_PSWD_MD5')
 SMSAPI_USERNAME = config('SMSAPI_USERNAME')
 SMSAPI_FROM = 'ReCaS'
 
-MOTION_ALERT_SUSPENSION_TIME = 2  # 15 Minutes interval between motion alerts from one camera
-# TODO change on 15 minutes
+# When this amount of minutes will pass and no motion will be detected than sending motion alert will be unblocked
+MOTION_ALERT_SUSPENSION_TIME = 15
