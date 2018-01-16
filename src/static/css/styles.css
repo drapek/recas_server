@@ -1,0 +1,12 @@
+
+.input-range {
+    width: 50%;
+    background: blue;
+}
+
+.slider-wrapper {
+    display: inline-block;
+    width: 20px;
+    height: 150px;
+    padding: 0;
+}

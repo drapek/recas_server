@@ -31,7 +31,7 @@
                                 <th>#</th>
                                 <th>camera</th>
                                 <th>name</th>
-                                <th>time of recording time</th>
+                                <th>recording time</th>
                                 <th>preview</th>
                             </tr>
                             </thead>
@@ -54,23 +54,25 @@
             {% else %}
                  <h2>There is no saved videos!</h2>
             {% endif %}
+
+             {% if is_paginated %}
+                <div class="pagination text-center m">
+                    <span class="page-links" style="font-size: 20px; margin-right: 50%">
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-w-m btn-primary" href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-w-m btn-primary" href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
         </div>
 
-            {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{% url 'camera:saved_videos_list' %}?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
+
     </div>
 {% endblock content %}
 
@@ -78,7 +80,9 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
+            $('#menu-camera-ul').addClass('in');
             $('#menu-camera-saved-videos').addClass('active');
+            $('#menu-camera').addClass('active');
         });
 
     </script>

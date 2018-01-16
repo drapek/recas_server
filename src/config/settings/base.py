@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'core',
     'users',
     'camera_panel',
-    'notifications'
+    'settings_panel',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +118,7 @@ STATICFILES_DIRS = [
     os.path.abspath(os.path.join(BASE_DIR, "../static")),
 ]
 
-SITE_URL = 'http://localhost:8000/'
+SITE_URL = 'http://192.168.1.30:8000/'
 MEDIA_ROOT = '/var/www/recas_server/media'
 MEDIA_URL = 'media/'
 ABSOLUTE_VIDEOS_URL = SITE_URL + MEDIA_URL + 'videos'

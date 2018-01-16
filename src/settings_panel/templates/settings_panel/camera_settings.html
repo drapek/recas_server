@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'inspinia/css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            <h1 style="padding: 10px">Settings</h1>
+            <label>selected camera<select class="form-control m-b" name="camera">
+                <option>camera 1</option>
+            </select>
+            </label>
+            <p>
+              <div class="slider-wrapper">
+                <form action="{{ request.path }}" method="post">
+                {% csrf_token %}
+                {% for setting in integer_settings %}
+                    <div class="option-wrapper" style="margin-top: 20px; margin-bottom: 20px">
+                        <label id="label{{ setting.pk }}" style="width: 100%;">{{ setting.name }}</label>
+                        {{ setting.description }}
+                        <input for="label{{ setting.pk }}" style="padding: 10px;" class='input-range' step="1" type="range"
+                               min="{{ setting.min_value }}" max="{{ setting.max_value }}"
+                               value="{{ setting.value }}" onmousemove="document.getElementById('value-shower-{{ setting.pk }}').innerHTML=this.value;"
+                               name="{{ setting.pk }}">
+                        <span id="value-shower-{{ setting.pk }}">{{ setting.value }}</span>
+                    </div>
+
+                {% endfor %}
+                <button class="btn-w-m btn-primary" type="submit">Update</button>
+                </form>
+
+              </div>
+            </p>
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src={% static "inspinia/js/plugins/nouslider/jquery.nouislider.min.js" %} ></script>
+    <script>
+        $(document).ready(function() {
+            $('#menu-settings-ul').addClass('in');
+            $('#menu-settings-camera').addClass('active');
+            $('#menu-settings').addClass('active');
+
+        });
+
+    </script>
+{% endblock %}

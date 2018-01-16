@@ -1,0 +1,10 @@
+<li id="menu-settings">
+    <a href="{% url 'settings:camera_settings' %}"><i class="fa fa-cogs"></i> <span
+            class="nav-label">Settings</span><span class="fa arrow"></span></a>
+    <ul id="menu-settings-ul" class="nav nav-second-level collapse">
+        <li id="menu-settings-camera"><a href="{% url 'settings:camera_settings' %}">Camera settings</a>
+        </li>
+{#        <li id="menu-settings-server"><a href="{% url 'camera:saved_videos_list' %}">Saved videos</a>#}
+{#        </li>#}
+    </ul>
+</li>

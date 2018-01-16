@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('users.urls')),
     url(r'^camera/', include('camera_panel.urls', namespace='camera')),
+    url(r'^settings/', include('settings_panel.urls', namespace='settings')),
     url(r'^api/', include('notifications.urls'))
 ]
 

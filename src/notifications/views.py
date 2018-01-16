@@ -31,7 +31,7 @@ class GetNotification(APIView):
                     or timezone.now() > last_motion_alert.datetime + \
                             datetime.timedelta(minutes=settings.MOTION_ALERT_SUSPENSION_TIME):
                 send_alert_to_everybody('ReCaS system: Oh crap! Motion detected. Please check the camera if everything '
-                                        'is fine.', by_sms=True, by_messenger=True)
+                                        'is fine.', by_sms=False, by_messenger=True)
 
             # Create or update the LastMotion Object
             if last_motion_alert is None:

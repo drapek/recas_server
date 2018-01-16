@@ -7,7 +7,6 @@
         {% include 'html_blocks/message_block.html'%}
         <div>
             <h1>Online camera preview</h1>
-{#
             <img src="/media/online-preview/camera1.jpg" id="camera_preview"/>
 
             <select class="form-control m-b" name="camera">
@@ -32,7 +31,9 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('#menu-camera-ul').addClass('in');
             $('#menu-camera-online-preview').addClass('active');
+            $('#menu-camera').addClass('active');
         });
     </script>
 {% endblock %}

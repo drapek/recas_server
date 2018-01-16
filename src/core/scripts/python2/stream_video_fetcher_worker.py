@@ -34,7 +34,7 @@ class VideoStreamFetcher:
 
     def run(self):
         while True:
-            now = time.time()
+            now = time.time() + 3600  # add one hour because it is returning UTC time.
             random_characters = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(32))
             # mp4 because it is converted later on this format
             video_name = "{}_{}.mp4".format(int(now), random_characters)

@@ -28,6 +28,7 @@
 
         <link href="{% static 'inspinia/css/animate.css' %}" rel="stylesheet">
         <link href="{% static 'inspinia/css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/styles.css' %}">
     {% endblock %}
 
 </head>
@@ -58,6 +59,7 @@
                     </li>
                     {#  list of avaible panels #}
                     {% include 'html_blocks/menu_camera_block.html' %}
+                    {% include 'html_blocks/menu_settings_block.html' %}
 
                 {% endblock navigation %}
 
