@@ -1,5 +1,15 @@
-djangorestframework==3.6.3
+certifi==2017.11.5
+chardet==3.0.4
 Django==1.11
+djangorestframework==3.6.3
+idna==2.6
+numpy==1.14.0
+opencv-python==3.4.0.12
+psycopg2==2.7.3.2
+PyJWT==1.5.3
+PySocks==1.6.8
 python-decouple==3.1
 pytz==2017.3
-numpy==1.14.0
+requests==2.18.4
+six==1.11.0
+urllib3==1.22

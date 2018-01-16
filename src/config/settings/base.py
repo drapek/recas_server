@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'users',
-    'camera_panel'
+    'camera_panel',
+    'notifications'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,11 @@ CAMERA_FRAME_WIDTH = 640
 CAMERA_FRAME_HEIGHT = 480
 VIDEO_FOLDER = MEDIA_ROOT + '/videos'
 IMAGES_STREAM_FOLDER = MEDIA_ROOT + '/online-preview'
+
+MESSENGER_ACCESS_TOKEN = config("MESSENGER_ACCESS_TOKEN")
+SMSAPI_PSWD_MD5 = config('SMSAPI_PSWD_MD5')
+SMSAPI_USERNAME = config('SMSAPI_USERNAME')
+SMSAPI_FROM = 'ReCaS'
+
+MOTION_ALERT_SUSPENSION_TIME = 2  # 15 Minutes interval between motion alerts from one camera
+# TODO change on 15 minutes

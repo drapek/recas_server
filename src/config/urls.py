@@ -21,7 +21,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('users.urls')),
-    url(r'^camera/', include('camera_panel.urls', namespace='camera'))
+    url(r'^camera/', include('camera_panel.urls', namespace='camera')),
+    url(r'^api/', include('notifications.urls'))
 ]
 
 

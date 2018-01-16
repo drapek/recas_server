@@ -20,3 +20,7 @@ DATABASES = {
         'PORT': config('DB_PORT', ''),
     }
 }
+
+
+# This is version without TLS
+SMSAPI_URL = 'http://api.smsapi.pl/sms.do'

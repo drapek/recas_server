@@ -11,3 +11,6 @@ ALLOWED_HOSTS = ['recas.drapiewski.pl']
 DATABASES = {
     # TODO configure it
 }
+
+
+SMSAPI_URL = 'https://api.smsapi.pl/sms.do'
