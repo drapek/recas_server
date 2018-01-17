@@ -3,7 +3,7 @@ from celery import shared_task
 
 
 @shared_task
-def send_command_to_camera(ip, path, data='', port=5555, send_type="get"):
+def send_command_to_camera(ip, path, data='', send_type="get", port=5555):
     headers = {
         "Content-Type": "application/json"
     }

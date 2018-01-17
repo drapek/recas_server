@@ -138,3 +138,11 @@ SMSAPI_FROM = 'ReCaS'
 
 # When this amount of minutes will pass and no motion will be detected than sending motion alert will be unblocked
 MOTION_ALERT_SUSPENSION_TIME = 15
+
+# CELERY
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = "redis"
+CELERY_REDIS_HOST = "localhost"
+CELERY_REDIS_PORT = 6379
+CELERY_REDIS_DB = 0
+CELERY_ENABLE_UTC = False

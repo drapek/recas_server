@@ -22,7 +22,7 @@ class CameraIntegerSettings(models.Model):
         data = json.dumps({
             self.setting_variable_name: self.value
         })
-        send_command_to_camera(self.camera.address_ip, 'settings', data, send_type='post')  # TODO send it in async way
+        send_command_to_camera.apply_async((self.camera.address_ip, 'settings', data, 'post'))
 
 
 @receiver(post_save, sender=CameraIntegerSettings)
