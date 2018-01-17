@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row white-bg" style="padding: 15px;">
+        {% include 'html_blocks/message_block.html'%}
+        <div>
+            <h1 style="padding: 10px">Settings</h1>
+            <label>selected camera<select class="form-control m-b" name="camera">
+                <option>camera 1</option>
+            </select>
+            </label>
+            <p>
+            {% if error %}
+             <div class="alert alert-danger">
+               {{ error }}
+             </div>
+            {% endif %}
+            </p>
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src={% static "inspinia/js/plugins/nouslider/jquery.nouislider.min.js" %} ></script>
+    <script>
+        $(document).ready(function() {
+            $('#menu-settings-ul').addClass('in');
+            $('#menu-settings-camera').addClass('active');
+            $('#menu-settings').addClass('active');
+
+        });
+
+    </script>
+{% endblock %}

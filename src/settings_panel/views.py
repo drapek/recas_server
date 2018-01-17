@@ -1,3 +1,5 @@
+from ssl import socket_error
+
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView, View
@@ -8,6 +10,7 @@ from settings_panel.models import CameraIntegerSettings
 
 class CameraSettingsView(View):
     template_name = 'settings_panel/camera_settings.html'
+    template_error = 'settings_panel/camera_settings_error.html'
 
     def get(self, request, *args, **kwargs):
         camera_name = request.GET.get('camera_name')
@@ -17,7 +20,12 @@ class CameraSettingsView(View):
             camera = Camera.objects.first()
 
         # Update the camera settings from remote client
-        camera.update_object_using_client_camera_data()
+        try:
+            camera.update_object_using_client_camera_data()
+        except socket_error:
+            return render(request, self.template_error, {"error": "Can't connect to camera. Please check internet"
+                                                                 " conneciton of the camera."})
+
         integer_settings = CameraIntegerSettings.objects.filter(camera=camera).all()
         return render(request, self.template_name, {"integer_settings": integer_settings})
 
