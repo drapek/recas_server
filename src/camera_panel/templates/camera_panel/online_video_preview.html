@@ -22,12 +22,29 @@
     {# Update the image every 0.5 sec #}
     <script>
         function refresh_camera_image() {
-            setInterval(function () {
                 var myImageElement = document.getElementById('camera_preview');
                 myImageElement.src = '/media/online-preview/camera1.jpg?rand=' + Math.random();
-            }, 500);
         }
-        window.onload = refresh_camera_image
+
+        function reneveal_stream_ttl() {
+                $.ajax({
+                    url: '{{ SITE_URL|slice:"-1" }}{% url 'api_renew_camera_stream' %}',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json', // same here
+                    data: '{"camera_name": "camera1"}' {# TODO change it on variable when multiply cameras will be implemented #}
+                }).done(console.log('done')).fail(console.log('fail'))
+        }
+
+        function online_preview_services() {
+            refresh_camera_image();
+            setInterval(refresh_camera_image, 500);
+
+            reneveal_stream_ttl();
+            setInterval(refresh_camera_image, 29000);
+        }
+
+        window.onload = online_preview_services;
     </script>
     <script>
         $(document).ready(function() {

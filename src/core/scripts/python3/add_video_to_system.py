@@ -2,7 +2,6 @@ import sys
 
 
 def save_video_info(camera_name, video_name, timestamp):
-    print("Im in")
     import os
     import django
     from datetime import datetime

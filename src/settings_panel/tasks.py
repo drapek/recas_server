@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 import requests
 from celery import shared_task
 
@@ -15,6 +17,10 @@ def send_command_to_camera(ip, path, data='', send_type="get", port=5555):
         send_method = requests.post
 
     r = send_method("http://{}:{}/{}".format(ip, port, path), data=data, headers=headers)
-    print(r.json())
+    try:
+        print(r.json())
+    except JSONDecodeError:
+        pass
+
     return r
 
